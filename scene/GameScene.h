@@ -10,6 +10,7 @@
 #include "ViewProjection.h"
 #include "WorldTransform.h"
 #include <DirectXMath.h>
+#include "Essentials.h"
 
 /// <summary>
 /// ゲームシーン
@@ -47,6 +48,15 @@ class GameScene {
 	Input* input_ = nullptr;
 	Audio* audio_ = nullptr;
 	DebugText* debugText_ = nullptr;
+
+	handle texHandle = 0;
+	handle sndHandle = 0;
+
+	unique_ptr<Sprite> spr = nullptr;
+	unique_ptr<Model> model = nullptr;
+
+	WorldTransform wTrans;
+	ViewProjection vProj;
 
 	/// <summary>
 	/// ゲームシーン用
