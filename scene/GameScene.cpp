@@ -6,7 +6,9 @@ using namespace DirectX;
 
 GameScene::GameScene() {}
 
-GameScene::~GameScene() {}
+GameScene::~GameScene() {
+	delete model;
+}
 
 void GameScene::Initialize() {
 
@@ -14,6 +16,18 @@ void GameScene::Initialize() {
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
 	debugText_ = DebugText::GetInstance();
+
+	obj.tex = TextureManager::Load("mario.jpg");
+	obj.model = Model::Create();
+
+	vProj.Initialize();
+
+	obj.wld.scale_ = { 5.0f, 5.0f, 5.0f };
+	obj.wld.translation_ = {10, 10, 10 };
+	obj.wld.rotation_ = { 0.785398, 0.785398, 0 };
+
+	obj.wld.Initialize();
+
 }
 
 void GameScene::Update() {}
@@ -44,6 +58,7 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
+	obj.Draw();
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
@@ -58,6 +73,20 @@ void GameScene::Draw() {
 	/// </summary>
 
 	// デバッグテキストの描画
+	debugText_->SetPos(32, 32);
+	debugText_->Printf("translation (%f %f %f) rotation (%f %f %f) scale (%f %f %f)",
+		obj.wld.translation_.x,
+		obj.wld.translation_.y,
+		obj.wld.translation_.z,
+
+		obj.wld.rotation_.x,
+		obj.wld.rotation_.y,
+		obj.wld.rotation_.z,
+
+		obj.wld.scale_.x,
+		obj.wld.scale_.y,
+		obj.wld.scale_.z
+		);
 	debugText_->DrawAll(commandList);
 	//
 	// スプライト描画後処理
