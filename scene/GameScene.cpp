@@ -1,6 +1,7 @@
 ﻿#include "GameScene.h"
 #include "TextureManager.h"
 #include <cassert>
+#include "Util.h"
 
 using namespace DirectX;
 
@@ -14,9 +15,30 @@ void GameScene::Initialize() {
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
 	debugText_ = DebugText::GetInstance();
+
+	obj.model = Model::CreateFromOBJ("monkey", false);
+	obj.tex = TextureManager::Load("mario.jpg");
+
+	vProj.Initialize();
+
+	obj.wld.Initialize();
 }
 
-void GameScene::Update() {}
+void GameScene::Update() {
+
+	obj.wld.rotation_ = obj.wld.rotation_ + XMFLOAT3(0, XM_PI / 72 * (input_->PushKey(DIK_RIGHT) - input_->PushKey(DIK_LEFT)), 0);
+	
+	XMMATRIX rotmat = XMMatrixIdentity();
+	rotmat *= XMMatrixRotationY(XM_PI / 72 * (input_->PushKey(DIK_RIGHT) - input_->PushKey(DIK_LEFT)));
+	
+	obj.front.CalcWithMatLH(rotmat);
+
+	Vec3 move = obj.front.SetLength(obj.speed) * (input_->PushKey(DIK_UP) - input_->PushKey(DIK_DOWN));
+	obj.wld.translation_ = obj.wld.translation_ + (move.GetXMFloat());
+	obj.wld.UpdateMatrix();
+
+	
+}
 
 void GameScene::Draw() {
 
@@ -44,7 +66,7 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
-
+	obj.Draw();
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
 #pragma endregion

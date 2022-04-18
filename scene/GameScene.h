@@ -10,6 +10,7 @@
 #include "ViewProjection.h"
 #include "WorldTransform.h"
 #include <DirectXMath.h>
+#include <Obj3D.h>
 
 /// <summary>
 /// ゲームシーン
@@ -51,4 +52,9 @@ class GameScene {
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
+	Model* model = nullptr;
+
+	ViewProjection vProj;
+
+	Obj3D obj = Obj3D(WorldTransform(), &vProj, 0, model);
 };

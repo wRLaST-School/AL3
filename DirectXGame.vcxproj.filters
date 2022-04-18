@@ -52,6 +52,12 @@
     <Filter Include="ヘッダー ファイル\input">
       <UniqueIdentifier>{d461f61e-3cc4-4b11-b521-37a61c927ae5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Vec">
+      <UniqueIdentifier>{25156afb-9e59-4833-b45b-5c9cac36cb57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Vec">
+      <UniqueIdentifier>{b9b8a13a-c224-4fc6-ab49-7479093f2678}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -107,6 +113,12 @@
     </ClCompile>
     <ClCompile Include="Obj3D.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Util.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Vec3.cpp">
+      <Filter>ソース ファイル\Vec</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +187,12 @@
     </ClInclude>
     <ClInclude Include="Obj3D.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Util.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec3.h">
+      <Filter>ヘッダー ファイル\Vec</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

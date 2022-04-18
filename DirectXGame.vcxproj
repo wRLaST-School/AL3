@@ -116,6 +116,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Obj3D.cpp" />
     <ClCompile Include="scene\GameScene.cpp" />
+    <ClCompile Include="Util.cpp" />
+    <ClCompile Include="Vec3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2d\DebugText.h" />
@@ -140,6 +142,8 @@
     <ClInclude Include="input\Input.h" />
     <ClInclude Include="Obj3D.h" />
     <ClInclude Include="scene\GameScene.h" />
+    <ClInclude Include="Util.h" />
+    <ClInclude Include="Vec3.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\shaders\Obj.hlsli" />
