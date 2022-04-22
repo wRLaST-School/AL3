@@ -37,7 +37,15 @@ void GameScene::Update() {
 	obj.wld.translation_ = obj.wld.translation_ + (move.GetXMFloat());
 	obj.wld.UpdateMatrix();
 
-	
+	float cameraDistance = 5.0f;
+
+	Vec3 back = obj.front;
+
+	back.SetLength(cameraDistance);
+
+	vProj.target = obj.wld.translation_;
+	vProj.eye = obj.wld.translation_ - back.GetXMFloat();
+	vProj.UpdateMatrix();
 }
 
 void GameScene::Draw() {
