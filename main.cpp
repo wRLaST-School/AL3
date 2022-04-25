@@ -14,7 +14,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	Audio* audio = nullptr;
 	DebugText* debugText = nullptr;
 	AxisIndicator* axisIndicator = nullptr;
-	GameScene* gameScene = nullptr;
+	GameScene* gameScene = nullptr;	
 
 	// ゲームウィンドウの作成
 	win = WinApp::GetInstance();

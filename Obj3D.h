@@ -2,6 +2,7 @@
 #include "Vec3.h"
 class Obj3D {
 public:
+	Obj3D() {};
 	Obj3D(WorldTransform wld, ViewProjection* vProj, unsigned int tex, Model* model);
 	void Draw();
 

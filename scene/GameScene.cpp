@@ -17,11 +17,24 @@ void GameScene::Initialize() {
 	debugText_ = DebugText::GetInstance();
 
 	obj.model = Model::CreateFromOBJ("monkey", false);
-	obj.tex = TextureManager::Load("mario.jpg");
 
 	vProj.Initialize();
 
 	obj.wld.Initialize();
+
+	float boxsize = 2;
+	for (size_t i = 0; i < 3; i++)
+	{
+		for (size_t j = 0; j < 3; j++)
+		{
+			floor[i][j] = Obj3D(WorldTransform(), &vProj, 0, nullptr);
+			floor[i][j].model = Model::Create();
+			floor[i][j].tex = TextureManager::Load("mario.jpg");
+			floor[i][j].wld.Initialize();
+			floor[i][j].wld.translation_ = XMFLOAT3(-boxsize + i * boxsize, -3, -boxsize + j * boxsize);
+			floor[i][j].wld.UpdateMatrix();
+		}
+	}
 }
 
 void GameScene::Update() {
@@ -39,12 +52,12 @@ void GameScene::Update() {
 
 	float cameraDistance = 5.0f;
 
-	Vec3 back = obj.front;
+	Vec3 back = obj.front * -1;
 
 	back.SetLength(cameraDistance);
 
 	vProj.target = obj.wld.translation_;
-	vProj.eye = obj.wld.translation_ - back.GetXMFloat();
+	vProj.eye = obj.wld.translation_ + back.GetXMFloat();
 	vProj.UpdateMatrix();
 }
 
@@ -75,6 +88,13 @@ void GameScene::Draw() {
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
 	obj.Draw();
+	for (size_t i = 0; i < 3; i++)
+	{
+		for (size_t j = 0; j < 3; j++)
+		{
+			floor[i][j].Draw();
+		}
+	}
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
 #pragma endregion

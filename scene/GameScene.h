@@ -57,4 +57,6 @@ class GameScene {
 	ViewProjection vProj;
 
 	Obj3D obj = Obj3D(WorldTransform(), &vProj, 0, model);
+
+	Obj3D floor[3][3];
 };
